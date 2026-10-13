@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>mostrar todo cliente</h1>
+    <table border="1">
+        <thead>
+            <th>idcliente</th>
+            <th>nombre</th>
+            <th>apellidos</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>correo</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(cli=>{%>
+                    <tr>
+                        <th><%=cli.idcliente%></th>
+                        <th><%=cli.nombre%></th>
+                        <th><%=cli.apellidos%></th>
+                        <th><%=cli.direccion%></th>
+                        <th><%=cli.telefono%></th>
+                        <th><%=cli.correo%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</body>
+</html>

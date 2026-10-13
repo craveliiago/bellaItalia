@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>mostrar todo pedidos</h1>
+    <table border="1">
+        <thead>
+            <th>idpedido</th>
+            <th>fecha_pedido</th>
+            <th>hora_pedido</th>
+            <th>tipo</th>
+            <th>estado</th>
+            <th>total</th>
+            <th>fecha_entrega</th>
+            <th>hora_entrega</th>
+            <th>repartidor_idrepartidor</th>
+            <th>clientes_idcliente</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(ped=>{%>
+                    <tr>
+                        <th><%=ped.idpedido%></th>
+                        <th><%=ped.fecha_pedido%></th>
+                        <th><%=ped.hora_pedido%></th>
+                        <th><%=ped.tipo%></th>
+                        <th><%=ped.estado%></th>
+                        <th><%=ped.total%></th>
+                        <th><%=ped.fecha_entrega%></th>
+                        <th><%=ped.hora_entrega%></th>
+                        <th><%=ped.repartidor_idrepartidor%></th>
+                        <th><%=ped.clientes_idcliente%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+
+    <h1>detalles de todos los pedidos</h1>
+    <table border="1">
+        <thead>
+            <th>iddetalle</th>
+            <th>cantidad</th>
+            <th>subtotal</th>
+            <th>producto_idproducto</th>
+            <th>pedidos_idpedido</th>
+        </thead>
+        <tbody>
+            <%if(registrosDetalles.length>0){
+                registrosDetalles.forEach(det=>{%>
+                    <tr>
+                        <th><%=det.iddetalle%></th>
+                        <th><%=det.cantidad%></th>
+                        <th><%=det.subtotal%></th>
+                        <th><%=det.producto_idproducto%></th>
+                        <th><%=det.pedidos_idpedido%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</body>
+</html>

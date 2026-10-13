@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>mostrar todo producto</h1>
+    <table border="1">
+        <thead>
+            <th>idproducto</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+            <th>precio</th>
+            <th>categoria_idcategoria</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(pro=>{%>
+                    <tr>
+                        <th><%=pro.idproducto%></th>
+                        <th><%=pro.nombre%></th>
+                        <th><%=pro.descripcion%></th>
+                        <th><%=pro.precio%></th>
+                        <th><%=pro.categoria_idcategoria%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</body>
+</html>

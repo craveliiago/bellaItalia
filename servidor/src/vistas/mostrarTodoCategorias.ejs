@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>mostrar todo categoria</h1>
+    <table border="1">
+        <thead>
+            <th>idcategoria</th>
+            <th>nombre</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(cat=>{%>
+                    <tr>
+                        <th><%=cat.idcategoria%></th>
+                        <th><%=cat.nombre%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</body>
+</html>
