@@ -31,7 +31,7 @@
                 registros.forEach(ped=>{%>
                     <%if (ped.idpedido>0){%>
                     <tr>
-                        <th><%=ped.idpedido%></th>
+                        <th><a href="todos/detalles/<%=ped.idpedido%>"><%=ped.idpedido%></a></th>
                         <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año-->
                         <th><%=ped.hora_pedido%></th>
                         <th><%=ped.tipo%></th>
@@ -39,7 +39,13 @@
                         <th><%=ped.total%></th>
                         <th><%=new Date(ped.fecha_entrega).toLocaleDateString('es-AR')%></th>
                         <th><%=ped.hora_entrega%></th>
-                        <th><%=ped.repartidor_idrepartidor%></th>
+
+                        <%if(ped.repartidor_idrepartidor==null || ped.repartidor_idrepartidor==''){%>
+                            <th>-</th> <!-- hace q si no se ingreso un id en el campo para asignar repartidor de pedido, se ponga una linea (si es para llevar o en el local, por eso repartidor puede ser null)-->
+                        <%} else {%>
+                            <th><%=ped.repartidor_idrepartidor%></th>
+                        <%}%>
+
                         <th><%=ped.clientes_idcliente%></th>
                     </tr>
                     <%}%>

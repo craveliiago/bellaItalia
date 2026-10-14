@@ -1,4 +1,4 @@
-import {peMenu, peAlta, peNuevo, peNuevoDetalles, /*peBaja, peMod, peCons,*/ peTodos}from '../controller/pedidosController.js';
+import {peMenu, peAlta, peNuevo, peNuevoDetalles, /*peBaja, peMod, peCons,*/ peTodos, peDetallesId}from '../controller/pedidosController.js';
 import express from 'express';
 
 const rPed=express.Router()
@@ -10,4 +10,5 @@ rPed.post('/pedidos/detallesnuevo', peNuevoDetalles) //ingresar detalle pedido, 
 rPed.get('/pedidos/mod', peMod)
 rPed.get('/pedidos/cons', peCons)*/
 rPed.get('/pedidos/todos', peTodos)
+rPed.get('/pedidos/todos/detalles/:idpedido', peDetallesId)
 export {rPed}
