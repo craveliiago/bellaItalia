@@ -23,6 +23,7 @@
         <tbody>
             <%if(registros.length>0){
                 registros.forEach(rep=>{%>
+                    <%if (rep.idrepartidor>0){%>
                     <tr>
                         <th><%=rep.idrepartidor%></th>
                         <th><%=rep.nombre%></th>
@@ -30,6 +31,7 @@
                         <th><%=rep.telefono%></th>
                         <th><%=rep.vehiculo%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>

@@ -10,32 +10,37 @@
     <header class="header">
        <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
     </header>
-    <h1>mostrar todo producto</h1>
-    <table border="1">
-        <thead>
-            <th>idproducto</th>
-            <th>nombre</th>
-            <th>descripcion</th>
-            <th>precio</th>
-            <th>categoria_idcategoria</th>
-        </thead>
-        <tbody>
-            <%if(registros.length>0){
-                registros.forEach(pro=>{%>
+
+    <article>
+        <h1>mostrar todo producto</h1>
+        <table border="1">
+            <thead>
+                <th>idproducto</th>
+                <th>nombre</th>
+                <th>descripcion</th>
+                <th>precio</th>
+                <th>categoria_idcategoria</th>
+            </thead>
+            <tbody>
+                <%if(registros.length>0){
+                    registros.forEach(pro=>{%>
+                        <%if (pro.idproducto>0){%>
+                        <tr>
+                            <th><%=pro.idproducto%></th>
+                            <th><%=pro.nombre%></th>
+                            <th><%=pro.descripcion%></th>
+                            <th><%=pro.precio%></th>
+                            <th><%=pro.categoria_idcategoria%></th>
+                        </tr>
+                        <%}%>
+                    <%})
+                } else{%>
                     <tr>
-                        <th><%=pro.idproducto%></th>
-                        <th><%=pro.nombre%></th>
-                        <th><%=pro.descripcion%></th>
-                        <th><%=pro.precio%></th>
-                        <th><%=pro.categoria_idcategoria%></th>
+                        <p>No hay registros</p>
                     </tr>
-                <%})
-            } else{%>
-                <tr>
-                    <p>No hay registros</p>
-                </tr>
-            <%}%>
-        </tbody>
-    </table>
+                <%}%>
+            </tbody>
+        </table>
+    </article>
 </body>
 </html>

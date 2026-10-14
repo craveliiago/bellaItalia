@@ -20,10 +20,12 @@
         <tbody>
             <%if(registros.length>0){
                 registros.forEach(cat=>{%>
+                    <%if (cat.idcategoria>0){%>
                     <tr>
                         <th><%=cat.idcategoria%></th>
                         <th><%=cat.nombre%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>

@@ -29,11 +29,13 @@
         <tbody>
             <%if(registros2.length>0){
                 registros2.forEach(pro=>{%>
+                    <%if (pro.idproducto>0){%>
                     <tr>
                         <th><%=pro.idproducto%></th>
                         <th><%=pro.nombre%></th>
                         <th><%=pro.precio%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>

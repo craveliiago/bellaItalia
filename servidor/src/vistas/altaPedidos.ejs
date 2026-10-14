@@ -35,11 +35,13 @@
         <tbody>
             <%if(registros.length>0){
                 registros.forEach(cli=>{%>
+                    <%if (cli.idcliente>0){%>
                     <tr>
                         <th><%=cli.idcliente%></th>
                         <th><%=cli.nombre%></th>
                         <th><%=cli.apellidos%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>
@@ -59,11 +61,13 @@
         <tbody>
             <%if(registros2.length>0){
                 registros2.forEach(rep=>{%>
+                    <%if (rep.idrepartidor>0){%>
                     <tr>
                         <th><%=rep.idrepartidor%></th>
                         <th><%=rep.nombre%></th>
                         <th><%=rep.vehiculo%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>

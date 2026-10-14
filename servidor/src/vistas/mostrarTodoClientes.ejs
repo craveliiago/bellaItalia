@@ -25,6 +25,7 @@
         <tbody>
             <%if(registros.length>0){
                 registros.forEach(cli=>{%>
+                    <%if (cli.idcliente>0){%> <!-- hace que solo se vean id mayores a 0 -->
                     <tr>
                         <th><%=cli.idcliente%></th>
                         <th><%=cli.nombre%></th>
@@ -33,6 +34,7 @@
                         <th><%=cli.telefono%></th>
                         <th><%=cli.correo%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>

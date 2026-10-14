@@ -10,6 +10,8 @@
     <header class="header">
        <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
     </header>
+
+    <article>
     <h1>mostrar todo pedidos</h1>
     <table border="1">
         <thead>
@@ -27,6 +29,7 @@
         <tbody>
             <%if(registros.length>0){
                 registros.forEach(ped=>{%>
+                    <%if (ped.idpedido>0){%>
                     <tr>
                         <th><%=ped.idpedido%></th>
                         <th><%=ped.fecha_pedido%></th>
@@ -39,6 +42,7 @@
                         <th><%=ped.repartidor_idrepartidor%></th>
                         <th><%=ped.clientes_idcliente%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>
@@ -60,6 +64,7 @@
         <tbody>
             <%if(registrosDetalles.length>0){
                 registrosDetalles.forEach(det=>{%>
+                    <%if (det.iddetalle>0){%>
                     <tr>
                         <th><%=det.iddetalle%></th>
                         <th><%=det.cantidad%></th>
@@ -67,6 +72,7 @@
                         <th><%=det.producto_idproducto%></th>
                         <th><%=det.pedidos_idpedido%></th>
                     </tr>
+                    <%}%>
                 <%})
             } else{%>
                 <tr>
@@ -75,5 +81,6 @@
             <%}%>
         </tbody>
     </table>
+    </article>
 </body>
 </html>
