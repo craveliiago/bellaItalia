@@ -95,12 +95,9 @@ export const peTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoPedidos');
     try{
         let mostrarSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor_idrepartidor,clientes_idcliente FROM bellaitalia.pedidos Order by idpedido;";
-        let mostrarDetallesSQL="SELECT iddetalle,cantidad,subtotal,producto_idproducto,pedidos_idpedido FROM bellaitalia.detallespedido Order by iddetalle;";
         const [registros]=await bdd.query(mostrarSQL);
-        const [registrosDetalles]=await bdd.query(mostrarDetallesSQL);
         console.log(registros);
-        console.log(registrosDetalles);
-        resp.render('mostrarTodoPedidos', {registros, registrosDetalles});
+        resp.render('mostrarTodoPedidos', {registros});
     }catch(error){
         console.log('no se pueden mostrar los datos');
         console.log(error);
@@ -108,7 +105,7 @@ export const peTodos=async(pet, resp)=>{
     }
 }
 
-export const peDetallesId=async(pet, resp)=>{
+export const peDetallesId=async(pet, resp)=>{ //se accede a esta func. dsp de hacer click en el id del pedido en tabla pedidos
     let idpedido=pet.params.idpedido;
     try{
         let mostrarDetallesIdSQL="SELECT iddetalle,cantidad,subtotal,producto_idproducto,pedidos_idpedido FROM bellaitalia.detallespedido WHERE pedidos_idpedido='"+idpedido+"' Order by iddetalle;";

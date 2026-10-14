@@ -31,8 +31,8 @@
                 registros.forEach(ped=>{%>
                     <%if (ped.idpedido>0){%>
                     <tr>
-                        <th><a href="todos/detalles/<%=ped.idpedido%>"><%=ped.idpedido%></a></th>
-                        <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año-->
+                        <th><a href="todos/detalles/<%=ped.idpedido%>"><%=ped.idpedido%></a></th> <!-- enlace para ver detalles del pedido -->
+                        <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año -->
                         <th><%=ped.hora_pedido%></th>
                         <th><%=ped.tipo%></th>
                         <th><%=ped.estado%></th>
@@ -58,35 +58,7 @@
         </tbody>
     </table>
 
-    <h1>detalles de todos los pedidos</h1>
-    <table border="1">
-        <thead>
-            <th>iddetalle</th>
-            <th>cantidad</th>
-            <th>subtotal</th>
-            <th>producto_idproducto</th>
-            <th>pedidos_idpedido</th>
-        </thead>
-        <tbody>
-            <%if(registrosDetalles.length>0){
-                registrosDetalles.forEach(det=>{%>
-                    <%if (det.iddetalle>0){%>
-                    <tr>
-                        <th><%=det.iddetalle%></th>
-                        <th><%=det.cantidad%></th>
-                        <th><%=det.subtotal%></th>
-                        <th><%=det.producto_idproducto%></th>
-                        <th><%=det.pedidos_idpedido%></th>
-                    </tr>
-                    <%}%>
-                <%})
-            } else{%>
-                <tr>
-                    <p>No hay registros</p>
-                </tr>
-            <%}%>
-        </tbody>
-    </table>
+    
     </article>
 </body>
 </html>
