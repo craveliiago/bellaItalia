@@ -16,8 +16,33 @@
         <input type="text" name="nomhtml" placeholder="nombre">
         <input type="text" name="deshtml" placeholder="descripcion">
         <input type="number" name="prehtml" placeholder="precio">
-        <input type="text" name="cathtml" placeholder="categoria">
+        <input type="text" name="cathtml" placeholder="id de la categoria">
         <input type="submit" value="enviar">
     </form>
+
+    <h1>tabla de categorias</h1>
+    <table border="1">
+        <thead>
+            <th>idcategoria</th>
+            <th>nombre</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(cat=>{%>
+                    <%if (cat.idcategoria>0){%>
+                    <tr>
+                        <th><%=cat.idcategoria%></th>
+                        <th><%=cat.nombre%></th>
+                    </tr>
+                    <%}%>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+
 </body>
 </html>

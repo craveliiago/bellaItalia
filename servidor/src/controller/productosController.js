@@ -1,9 +1,20 @@
 import {conectar}from '../database/conexion.js';
 const bdd=await conectar();
 
-export const pAlta=(pet, resp)=>{
-    resp.render('altaProductos');
+export const pAlta=async (pet, resp)=>{
+    try{
+        //mostrar tabla de categorias en la pantalla ingresar productos
+        let mostrarCategoriasSQL="SELECT idcategoria,nombre FROM bellaitalia.categorias Order by idcategoria;";
+        const [registros]=await bdd.query(mostrarCategoriasSQL);
+        console.log(registros);
+        resp.render('altaProductos', {registros});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    }
 }
+
 export const pNuevo=async(pet, resp)=>{
     let id, nom, des, pre, cat;
     id=pet.body.idhtml;
