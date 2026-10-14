@@ -22,19 +22,6 @@ export const peAlta=async (pet, resp)=>{
 
 }
 
-export const peDalta=async (pet, resp)=>{
-    try{
-        let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
-        const [registros]=await bdd.query(mostrarProductosSQL);
-        console.log(registros);
-        resp.render('altaDetallesPedidos', {registros});
-    }catch(error){
-        console.log('no se pueden mostrar los datos');
-        console.log(error);
-        resp.status(500).send("No se pudieron mostrar los datos");
-    }
-}
-
 export const peNuevo=async(pet, resp)=>{
     let id, fped, hped, tip, est, tot, fent, hent, rep, cli;
     id=pet.body.idhtml;
@@ -52,8 +39,12 @@ export const peNuevo=async(pet, resp)=>{
         let altaSQL="INSERT INTO pedidos (idpedido, fecha_pedido, hora_pedido, tipo, estado, total, fecha_entrega, hora_entrega, repartidor_idrepartidor, clientes_idcliente) VALUES ('"+id+"','"+fped+"','"+hped+"','"+tip+"','"+est+"','"+tot+"','"+fent+"','"+hent+"','"+rep+"','"+cli+"');";
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
-        resp.render('altaDetallesPedidos');
 
+        //muestra la tabla productos (pantalla q se muestra dsp de ingresar pedido)
+        let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
+        const [registros2]=await bdd.query(mostrarProductosSQL);
+        console.log(registros2);
+        resp.render('altaDetallesPedidos', {registros, registros2});
     }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
 }
@@ -69,9 +60,14 @@ export const peNuevoDetalles=async(pet, resp)=>{
 
     try{
         let altaDetallesSQL="INSERT INTO detallespedido (cantidad, subtotal, producto_idproducto, pedidos_idpedido) VALUES ('"+cant+"','"+sub+"','"+prod+"','"+idped+"');";
-        const [registrosDetalles]=await bdd.query(altaDetallesSQL);
-        console.log(registrosDetalles);
-        resp.render('altaDetallesPedidos');
+        const [registros]=await bdd.query(altaDetallesSQL);
+        console.log(registros);
+
+        //muestra la tabla productos (pantalla q se muestra dsp de ingresar primer detalles de pedido)
+        let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
+        const [registros2]=await bdd.query(mostrarProductosSQL);
+        console.log(registros2);
+        resp.render('altaDetallesPedidos', {registros, registros2});
 
         // volver a mostrar el formulario de detalle pedido.
         // si la persona no quiere mas se tiene que ir al menu de pedidos
