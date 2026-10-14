@@ -32,12 +32,12 @@
                     <%if (ped.idpedido>0){%>
                     <tr>
                         <th><%=ped.idpedido%></th>
-                        <th><%=ped.fecha_pedido%></th>
+                        <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año-->
                         <th><%=ped.hora_pedido%></th>
                         <th><%=ped.tipo%></th>
                         <th><%=ped.estado%></th>
                         <th><%=ped.total%></th>
-                        <th><%=ped.fecha_entrega%></th>
+                        <th><%=new Date(ped.fecha_entrega).toLocaleDateString('es-AR')%></th>
                         <th><%=ped.hora_entrega%></th>
                         <th><%=ped.repartidor_idrepartidor%></th>
                         <th><%=ped.clientes_idcliente%></th>
