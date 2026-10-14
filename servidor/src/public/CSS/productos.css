@@ -26,11 +26,19 @@ a{
     color: inherit; 
 }
 .contenedor2{
+    gap: 20px;
     background-color: rgb(255, 207, 149) ;
-}
-main{
     justify-content: center;
+    padding: 20px;
     display: flex;
-    padding: 10px;
-    color: whitesmoke;
+}
+button{
+    background-color: #ffa530;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
 }
