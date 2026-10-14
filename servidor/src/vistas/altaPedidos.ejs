@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alta de Pedidos</title>
+    <link rel="stylesheet" href="../CSS/altas.css">
 </head>
 <body>
+    <header class="header">
+       <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
     <h1>ingresar pedido</h1>
     <form action="/pedidos/nuevo" method="post">
         <input type="number" name="idhtml" placeholder="id">
@@ -18,11 +22,6 @@
         <input type="time" name="henthtml" placeholder="hora entrega">
         <input type="number" name="rephtml" placeholder="repartidor">
         <input type="number" name="clihtml" placeholder="cliente">
-        <h1>completar datos del pedido</h1>
-        <input type="number" name="detallehtml" placeholder="id">
-        <input type="number" name="canthtml" placeholder="cantidad">
-        <input type="number" name="subhtml" placeholder="subtotal">
-        <input type="number" name="prodhtml" placeholder="producto">
         <input type="submit" value="enviar">
     </form>
 </body>

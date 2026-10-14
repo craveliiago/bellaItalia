@@ -12,6 +12,7 @@ export const catNuevo=async(pet, resp)=>{
         let altaSQL="INSERT INTO categorias (idcategoria, nombre) VALUES ('"+id+"','"+nom+"');";
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
+        resp.render('altaCategorias');
 }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Detalles de Pedidos</title>
+    <link rel="stylesheet" href="../CSS/altas.css">
+</head>
+<body>
+    <header class="header">
+       <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
+    <h1>completar datos del pedido</h1>
+    <form action="/pedidos/detallesnuevo" method="post">
+        <input type="number" name="canthtml" placeholder="cantidad">
+        <input type="number" name="subhtml" placeholder="subtotal">
+        <input type="number" name="prodhtml" placeholder="producto">
+        <input type="number" name="idpedhtml" placeholder="id del pedido">
+        <input type="submit" value="enviar">
+        <input type="button" value="volver" onclick="window.location.href='/pedidos/alta'">
+    </form>
+</body>
+</html>

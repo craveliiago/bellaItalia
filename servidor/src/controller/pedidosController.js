@@ -1,11 +1,14 @@
-//este controller es distinto a los otros, pq junta los formularios y los mostrar datos de dos tablas (pedidos y detallespedidos)
-
 import {conectar}from '../database/conexion.js';
 const bdd=await conectar();
 
 export const peAlta=(pet, resp)=>{
     resp.render('altaPedidos');
 }
+
+export const peDalta=(pet, resp)=>{
+    resp.render('altaDetallesPedidos');
+}
+
 export const peNuevo=async(pet, resp)=>{
     let id, fped, hped, tip, est, tot, fent, hent, rep, cli;
     id=pet.body.idhtml;
@@ -19,25 +22,38 @@ export const peNuevo=async(pet, resp)=>{
     rep=pet.body.rephtml;
     cli=pet.body.clihtml;
 
-    //tabla detallespedido
-    let detalle, cant, sub, prod;
-    detalle=pet.body.detallehtml;
-    cant=pet.body.canthtml;
-    sub=pet.body.subhtml;
-    prod=pet.body.prodhtml;
     try{
         let altaSQL="INSERT INTO pedidos (idpedido, fecha_pedido, hora_pedido, tipo, estado, total, fecha_entrega, hora_entrega, repartidor_idrepartidor, clientes_idcliente) VALUES ('"+id+"','"+fped+"','"+hped+"','"+tip+"','"+est+"','"+tot+"','"+fent+"','"+hent+"','"+rep+"','"+cli+"');";
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
-
-
-        let altaDetallesSQL="INSERT INTO detallespedido (iddetalle, cantidad, subtotal, producto_idproducto, pedidos_idpedido) VALUES ('"+detalle+"','"+cant+"','"+sub+"','"+prod+"','"+id+"');";
-        const [registrosDetalles]=await bdd.query(altaDetallesSQL);
-        console.log(registrosDetalles);
-}catch(error){
+        resp.render('altaDetallesPedidos');
+    }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
 }
 }
+
+export const peNuevoDetalles=async(pet, resp)=>{
+    let cant, sub, prod, idped;
+    cant=pet.body.canthtml;
+    sub=pet.body.subhtml;
+    prod=pet.body.prodhtml;
+    idped=pet.body.idpedhtml;
+
+    try{
+        let altaDetallesSQL="INSERT INTO detallespedido (cantidad, subtotal, producto_idproducto, pedidos_idpedido) VALUES ('"+cant+"','"+sub+"','"+prod+"','"+idped+"');";
+        const [registrosDetalles]=await bdd.query(altaDetallesSQL);
+        console.log(registrosDetalles);
+        resp.render('altaDetallesPedidos');
+
+        // volver a mostrar el formulario de detalle pedido.
+        // si la persona no quiere mas se tiene que ir al menu de pedidos
+
+    }catch(error){
+        console.log('Error al crear la sentencia insert ${error}');
+    }
+}
+
+
 export const peMenu=(pet, resp)=>{
     resp.render('pedidos');
 }

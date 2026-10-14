@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-image: url('../IMG/pizza-fondo2.jpg');
+    background-size: cover;
+}
+.header{
+    /* background-color: rgb(255, 174, 0); */
+    background-color: orangered; 
+    padding: 10px;
+}
+#logo{
+    width: 10%;
+}
+h1 {
+    color: #fffbfb;
+    margin-bottom: 20px;
+}
+form {
+    margin-bottom: 20px;
+}
+input {
+    background-color: #ffa530;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: #ffffff;
+}
+input::placeholder {
+    color: hsl(39, 74%, 85%);
+}

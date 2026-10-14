@@ -15,6 +15,7 @@ export const rNuevo=async(pet, resp)=>{
         let altaSQL="INSERT INTO repartidor (idrepartidor, nombre, apellidos, telefono, vehiculo) VALUES ('"+id+"','"+nom+"','"+ape+"','"+tel+"','"+veh+"');";
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
+        resp.render('altaRepartidor');
 }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
 }
