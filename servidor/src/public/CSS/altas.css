@@ -28,3 +28,6 @@ input {
 input::placeholder {
     color: hsl(39, 74%, 85%);
 }
+table{
+    background-color: #fffbfb;
+}

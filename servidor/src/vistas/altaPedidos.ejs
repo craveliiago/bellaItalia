@@ -24,5 +24,53 @@
         <input type="number" name="clihtml" placeholder="cliente">
         <input type="submit" value="enviar">
     </form>
+
+    <h1>tabla de clientes</h1>
+    <table border="1">
+        <thead>
+            <th>idcliente</th>
+            <th>nombre</th>
+            <th>apellidos</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(cli=>{%>
+                    <tr>
+                        <th><%=cli.idcliente%></th>
+                        <th><%=cli.nombre%></th>
+                        <th><%=cli.apellidos%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+
+    <h1>tabla de repartidores</h1>
+    <table border="1">
+        <thead>
+            <th>idrepartidor</th>
+            <th>nombre</th>
+            <th>vehiculo</th>
+        </thead>
+        <tbody>
+            <%if(registros2.length>0){
+                registros2.forEach(rep=>{%>
+                    <tr>
+                        <th><%=rep.idrepartidor%></th>
+                        <th><%=rep.nombre%></th>
+                        <th><%=rep.vehiculo%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
 </body>
 </html>

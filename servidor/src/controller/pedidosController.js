@@ -1,12 +1,38 @@
 import {conectar}from '../database/conexion.js';
 const bdd=await conectar();
 
-export const peAlta=(pet, resp)=>{
-    resp.render('altaPedidos');
+export const peAlta=async (pet, resp)=>{
+    try{
+        //esta es tabla de clientes
+        let mostrarClientesSQL="SELECT idcliente,nombre,apellidos FROM bellaitalia.clientes Order by idcliente;";
+        const [registros]=await bdd.query(mostrarClientesSQL);
+        console.log(registros);
+
+        //y esta de repartidores
+        let mostrarRepartidoresSQL="SELECT idrepartidor,nombre,vehiculo FROM bellaitalia.repartidor Order by idrepartidor;";
+        const [registros2]=await bdd.query(mostrarRepartidoresSQL);
+        console.log(registros2);
+        
+        resp.render('altaPedidos', {registros, registros2});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    }
+
 }
 
-export const peDalta=(pet, resp)=>{
-    resp.render('altaDetallesPedidos');
+export const peDalta=async (pet, resp)=>{
+    try{
+        let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
+        const [registros]=await bdd.query(mostrarProductosSQL);
+        console.log(registros);
+        resp.render('altaDetallesPedidos', {registros});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    }
 }
 
 export const peNuevo=async(pet, resp)=>{
@@ -27,10 +53,12 @@ export const peNuevo=async(pet, resp)=>{
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
         resp.render('altaDetallesPedidos');
+
     }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
 }
 }
+
 
 export const peNuevoDetalles=async(pet, resp)=>{
     let cant, sub, prod, idped;

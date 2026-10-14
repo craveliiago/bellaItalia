@@ -19,5 +19,27 @@
         <input type="submit" value="enviar">
         <input type="button" value="volver" onclick="window.location.href='/pedidos/alta'">
     </form>
+    <h1>tabla de productos</h1>
+    <table border="1">
+        <thead>
+            <th>idproducto</th>
+            <th>nombre</th>
+            <th>precio</th>
+        </thead>
+        <tbody>
+            <%if(registros.length>0){
+                registros.forEach(pro=>{%>
+                    <tr>
+                        <th><%=pro.idproducto%></th>
+                        <th><%=pro.nombre%></th>
+                        <th><%=pro.precio%></th>
+                    </tr>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
 </body>
 </html>
