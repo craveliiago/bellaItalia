@@ -44,6 +44,7 @@ export const peNuevo=async(pet, resp)=>{
         let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
         const [registros2]=await bdd.query(mostrarProductosSQL);
         console.log(registros2);
+
         resp.render('altaDetallesPedidos', {registros, registros2});
     }catch(error){
     console.log('Error al crear la sentencia insert ${error}');
@@ -67,6 +68,7 @@ export const peNuevoDetalles=async(pet, resp)=>{
         let mostrarProductosSQL="SELECT idproducto,nombre,precio FROM bellaitalia.productos Order by idproducto;";
         const [registros2]=await bdd.query(mostrarProductosSQL);
         console.log(registros2);
+        
         resp.render('altaDetallesPedidos', {registros, registros2});
 
         // volver a mostrar el formulario de detalle pedido.
