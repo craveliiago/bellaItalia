@@ -15,8 +15,20 @@
         <input type="number" name="idhtml" placeholder="id">
         <input type="date" name="fpedhtml" placeholder="fecha pedido">
         <input type="time" name="hpedhtml" placeholder="hora pedido">
-        <input type="text" name="tiphtml" placeholder="tipo">
-        <input type="text" name="esthtml" placeholder="estado">
+
+        <select name="tiphtml" placeholder="tipo">
+            <option value="A domicilio">A domicilio</option>
+            <option value="Para llevar">Para llevar</option>
+            <option value="En el local">En el local</option>
+        </select>
+
+        <select name="esthtml" placeholder="estado">
+            <option value="En preparacion">En preparacion</option>
+            <option value="Listo">Listo</option>
+            <option value="En camino">En camino</option>
+            <option value="Entregado">Entregado</option>
+            <option value="Cancelado">Cancelado</option>
+
         <input type="number" name="tothtml" placeholder="total">
         <input type="date" name="fenthtml" placeholder="fecha entrega">
         <input type="time" name="henthtml" placeholder="hora entrega">

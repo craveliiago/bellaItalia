@@ -1,6 +1,28 @@
 import {conectar}from '../database/conexion.js';
 const bdd=await conectar();
 
+//import Swal from 'sweetalert2'
+
+/* estas lineas son necesarias para usar el aler, desde la pagina sweetalert2 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+import Swal from 'sweetalert2'
+
+o
+
+const Swal = require('sweetalert2')
+
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+});
+
+*/
+
+
+
 export const pAlta=async (pet, resp)=>{
     try{
         //mostrar tabla de categorias en la pantalla ingresar productos
@@ -28,7 +50,12 @@ export const pNuevo=async(pet, resp)=>{
         console.log(registros);
         resp.render('altaProductos');
 }catch(error){
+
+
+
     console.log('Error al crear la sentencia insert ${error}');
+
+
 }
 }
 export const pMenu=(pet, resp)=>{

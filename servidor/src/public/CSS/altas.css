@@ -22,12 +22,23 @@ form {
 input {
     background-color: #ffa530;
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 20px;
     color: #ffffff;
+    font-size: 18px;
 }
 input::placeholder {
-    color: hsl(39, 74%, 85%);
+    color: #ffffff;
+    font-size: 18px;
 }
+
+select{
+    background-color: #ffa530;
+    margin-bottom: 10px;
+    padding: 20px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
 table{
     background-color: #fffbfb;
 }
