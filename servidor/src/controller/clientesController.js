@@ -18,6 +18,7 @@ export const cNuevo=async(pet, resp)=>{
         console.log(registros);
         resp.render('altaClientes');
 }catch(error){
+
     console.log('Error al crear la sentencia insert ${error}');
 }
 }

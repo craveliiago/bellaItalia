@@ -27,9 +27,9 @@ export const pAlta=async (pet, resp)=>{
     try{
         //mostrar tabla de categorias en la pantalla ingresar productos
         let mostrarCategoriasSQL="SELECT idcategoria,nombre FROM bellaitalia.categorias Order by idcategoria;";
-        const [registros]=await bdd.query(mostrarCategoriasSQL);
-        console.log(registros);
-        resp.render('altaProductos', {registros});
+        const [registros2]=await bdd.query(mostrarCategoriasSQL);
+        console.log(registros2);
+        resp.render('altaProductos', {registros2});
     }catch(error){
         console.log('no se pueden mostrar los datos');
         console.log(error);
@@ -44,13 +44,18 @@ export const pNuevo=async(pet, resp)=>{
     des=pet.body.deshtml;
     pre=pet.body.prehtml;
     cat=pet.body.cathtml;
+
     try{
         let altaSQL="INSERT INTO productos (idproducto, nombre, descripcion, precio, categoria_idcategoria) VALUES ('"+id+"','"+nom+"','"+des+"','"+pre+"','"+cat+"');";
         const [registros]=await bdd.query(altaSQL);
         console.log(registros);
-        resp.render('altaProductos');
-}catch(error){
 
+        let mostrarCategoriasSQL="SELECT idcategoria,nombre FROM bellaitalia.categorias Order by idcategoria;";
+        const [registros2]=await bdd.query(mostrarCategoriasSQL);
+        console.log(registros2);
+
+        resp.render('altaProductos', {registros, registros2});
+}catch(error){
 
 
     console.log('Error al crear la sentencia insert ${error}');
