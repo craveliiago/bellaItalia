@@ -42,3 +42,17 @@ export const catTodos=async(pet, resp)=>{
         resp.status(500).send("No se pudieron mostrar los datos");
     }
 }
+
+export const catProductos=async(pet, resp)=>{
+    let idpedido=pet.params.idpedido;
+    try{
+        let mostrarCategoriasProductoSQL="SELECT iddetalle,cantidad,subtotal,producto_idproducto,pedidos_idpedido FROM bellaitalia.detallespedido WHERE pedidos_idpedido='"+idpedido+"' Order by iddetalle;";
+        const [registrosDetallesId]=await bdd.query(mostrarDetallesIdSQL);
+        console.log(registrosDetallesId);
+        resp.render('mostrarDetallesPedido', {registrosDetallesId});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+}

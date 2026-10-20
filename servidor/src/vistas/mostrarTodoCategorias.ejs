@@ -22,7 +22,7 @@
                 registros.forEach(cat=>{%>
                     <%if (cat.idcategoria>0){%>
                     <tr>
-                        <th><%=cat.idcategoria%></th>
+                        <th><a href="todos/categorias/<%=cat.idcategoroia>"><%=cat.idcategoria%></a></th>
                         <th><%=cat.nombre%></th>
                     </tr>
                     <%}%>

@@ -25,6 +25,21 @@ input {
     padding: 20px;
     color: #ffffff;
     font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+#enviar {
+    background-color: #ffa530;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+     transition: all 0.3s ease-in-out;
+}
+#enviar:hover {
+    background-color: #f59e2d;
+    transform: scale(1.1);
 }
 input::placeholder {
     color: #ffffff;
@@ -41,4 +56,14 @@ select{
 
 table{
     background-color: #fffbfb;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+article{
+    background-color: orange;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
 }
