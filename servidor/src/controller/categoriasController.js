@@ -44,12 +44,12 @@ export const catTodos=async(pet, resp)=>{
 }
 
 export const catProductos=async(pet, resp)=>{
-    let idpedido=pet.params.idpedido;
+    let idcategoria=pet.params.idcategoria;
     try{
-        let mostrarCategoriasProductoSQL="SELECT iddetalle,cantidad,subtotal,producto_idproducto,pedidos_idpedido FROM bellaitalia.detallespedido WHERE pedidos_idpedido='"+idpedido+"' Order by iddetalle;";
-        const [registrosDetallesId]=await bdd.query(mostrarDetallesIdSQL);
-        console.log(registrosDetallesId);
-        resp.render('mostrarDetallesPedido', {registrosDetallesId});
+        let mostrarCategoriasProductoSQL="SELECT idproducto,nombre,descripcion,precio,categoria_idcategoria FROM bellaitalia.productos WHERE categoria_idcategoria='"+idcategoria+"' Order by idproducto;";
+        const [registrosProductosId]=await bdd.query(mostrarCategoriasProductoSQL);
+        console.log(registrosProductosId);
+        resp.render('mostrarCategoriasProductos', {registrosProductosId});
     }catch(error){
         console.log('no se pueden mostrar los datos');
         console.log(error);
