@@ -25,6 +25,14 @@ a{
     text-decoration: none;
     color: inherit; 
 }
+li{
+    text-decoration: none;
+    color: inherit; 
+}
+li:hover{
+    background-color: rgb(245, 114, 66);
+    transform: scale(1.5);
+}
 .contenedor2{
     background-color: rgb(255, 207, 149) ;
 }

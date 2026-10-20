@@ -49,3 +49,12 @@ button:hover {
    background-color: #f59e2d;
     transform: scale(1.1);
 }
+
+li{
+    text-decoration: none;
+    color: inherit; 
+}
+li:hover{
+    background-color: rgb(245, 114, 66);
+    transform: scale(1.5);
+}

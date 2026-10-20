@@ -32,6 +32,8 @@ export const cMod=(pet, resp)=>{
     resp.render('modificarClientes');
 }
 export const cCons=(pet, resp)=>{
+    
+    
     resp.render('consultaClientes');
 }
 export const cTodos=async(pet, resp)=>{
