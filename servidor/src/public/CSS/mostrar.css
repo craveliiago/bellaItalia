@@ -28,3 +28,30 @@ article{
     width: 100%;
     text-align: center;
 }
+
+#enviar {
+    background-color: #ffa530;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+     transition: all 0.3s ease-in-out;
+}
+#enviar:hover {
+    background-color: #f59e2d;
+    transform: scale(1.1);
+}
+input {
+    background-color: #ffa530;
+    margin-bottom: 10px;
+    padding: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+input::placeholder {
+    color: #ffffff;
+    font-size: 18px;
+}

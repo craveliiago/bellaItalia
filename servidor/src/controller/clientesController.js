@@ -22,6 +22,8 @@ export const cNuevo=async(pet, resp)=>{
     console.log('Error al crear la sentencia insert ${error}');
 }
 }
+
+
 export const cMenu=(pet, resp)=>{
     resp.render('clientes');
 }
@@ -31,13 +33,39 @@ export const cBaja=(pet, resp)=>{
 export const cMod=(pet, resp)=>{
     resp.render('modificarClientes');
 }
-export const cCons=(pet, resp)=>{
+
+
+export const cBuscar=async(pet, resp)=>{
+    try{
+        resp.render('consultaClientes');
+    }catch(error){
+
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
     
-    
-    resp.render('consultaClientes');
 }
+
+export const cCons=async(pet, resp)=>{
+    try{
+        let idbuscar=pet.params.idbuscar;
+        const consultaSQL="SELECT idcliente,nombre,apellidos,direccion,telefono,correo FROM bellaitalia.clientes WHERE idcliente='"+idbuscar+"';";
+        const [registro]=await bdd.query(consultaSQL);
+        console.log(registro);
+        resp.render('consultaClientes', {registro});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
+}
+
+
+
+
 export const cTodos=async(pet, resp)=>{
-    //resp.render('mostrarTodoClientes');
+
     try{
         let mostrarSQL="SELECT idcliente,nombre,apellidos,direccion,telefono,correo FROM bellaitalia.clientes Order by idcliente;";
         const [registros]=await bdd.query(mostrarSQL);
