@@ -72,9 +72,35 @@ export const pBaja=(pet, resp)=>{
 export const pMod=(pet, resp)=>{
     resp.render('modificarProductos');
 }
-export const pCons=(pet, resp)=>{
-    resp.render('consultaProductos');
+
+
+
+export const pBuscar=async(pet, resp)=>{
+    try{
+        resp.render('consultaProductos');
+    }catch(error){
+
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
 }
+
+export const pCons=async(pet, resp)=>{
+    try{
+        let idbuscar=pet.params.idbuscar;
+        const consultaSQL="SELECT idproducto,nombre,descripcion,precio,categoria_idcategoria FROM bellaitalia.productos WHERE idproducto='"+idbuscar+"';";
+        const [registro]=await bdd.query(consultaSQL);
+        console.log(registro);
+        resp.render('consultaProductos', {registro});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
+}
+
 export const pTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoProductos');
     try{

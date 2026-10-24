@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>consulta categorias</title>
+    <link rel="stylesheet" href="../../CSS/altas.css">
+</head>
+<body>
+    
+    <header class="header">
+       <a href="/"><img src="../../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
+
+    <article>
+        
+    <h1>mostrar la consulta del cliente</h1>
+    <table border="1">
+        <thead>
+            <th>idcategoria</th>
+            <th>nombre</th>
+        </thead>
+        <tbody>
+            <%if(registro.length>0){
+                registro.forEach(cat=>{%>
+                    <%if (cat.idcategoria>0){%>
+                    <tr>
+                        <th><a href="/categorias/todos/productos/<%=cat.idcategoria%>"><%=cat.idcategoria%></a></th>
+                        <th><%=cat.nombre%></th>
+                    </tr>
+                    <%}%>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</article>
+</body>
+</html>

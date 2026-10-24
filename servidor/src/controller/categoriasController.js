@@ -26,9 +26,37 @@ export const catvBaja=(pet, resp)=>{
 export const catMod=(pet, resp)=>{
     resp.render('modificarCategorias');
 }
-export const catCons=(pet, resp)=>{
-    resp.render('consultaCategorias');
+
+
+export const catBuscar=async(pet, resp)=>{
+    try{
+        resp.render('consultaCategorias');
+    }catch(error){
+
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
 }
+
+export const catCons=async(pet, resp)=>{
+    try{
+        let idbuscar=pet.params.idbuscar;
+        const consultaSQL="SELECT idcategoria,nombre FROM bellaitalia.categorias WHERE idcategoria='"+idbuscar+"';";
+        const [registro]=await bdd.query(consultaSQL);
+        console.log(registro);
+        resp.render('consultaCategorias', {registro});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
+}
+
+
+
+
 export const catTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoCategorias');
     try{

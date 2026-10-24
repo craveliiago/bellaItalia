@@ -10,6 +10,28 @@
     <header class="header">
        <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
     </header>
+
+    <h1>Consulta de Repartidores</h1>
+    <!-- <form action="/repartidores/consulta/idbuscar" method="get"> -->
+        <form onsubmit="buscarid(event)">
+        <input type="number" name="idbuscar"  placeholder="ID repartidor" id="idbuscar">
+        <input type="submit" value="buscar" id="enviar">
+
+    </form>
+
+<script>
+    function buscarid(event) {
+        event.preventDefault();
+        let idbuscar = document.getElementById('idbuscar').value;
+        window.location.href = `/repartidor/consulta/${idbuscar}`;
+        document.getElementById('idbuscar').value = "";
+        
+    }
+
+    
+</script>
+
+
     <article>
     <h1>mostrar todo repartidor</h1>
     <table border="1">

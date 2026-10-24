@@ -89,9 +89,35 @@ export const peBaja=(pet, resp)=>{
 export const peMod=(pet, resp)=>{
     resp.render('modificarPedidos');
 }
-export const peCons=(pet, resp)=>{
-    resp.render('consultaPedidos');
+
+
+export const peBuscar=async(pet, resp)=>{
+    try{
+        resp.render('consultaPedidos');
+    }catch(error){
+
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
 }
+
+export const peCons=async(pet, resp)=>{
+    try{
+        let idbuscar=pet.params.idbuscar;
+        const consultaSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor_idrepartidor,clientes_idcliente FROM bellaitalia.pedidos WHERE idpedido='"+idbuscar+"';";
+        const [registro]=await bdd.query(consultaSQL);
+        console.log(registro);
+        resp.render('consultaPedidos', {registro});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+    
+}
+
+
 
 export const peTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoPedidos');

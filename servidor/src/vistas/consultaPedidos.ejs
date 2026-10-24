@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>consulta pedidos</title>
+    <link rel="stylesheet" href="../../CSS/altas.css">
+</head>
+<body>
+    
+    <header class="header">
+       <a href="/"><img src="../../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
+
+    <article>
+        
+    <h1>mostrar la consulta del pedido</h1>
+    <table border="1">
+        <thead>
+            <th>idpedido</th>
+            <th>fecha_pedido</th>
+            <th>hora_pedido</th>
+            <th>tipo</th>
+            <th>estado</th>
+            <th>total</th>
+            <th>fecha_entrega</th>
+            <th>hora_entrega</th>
+            <th>repartidor_idrepartidor</th>
+            <th>clientes_idcliente</th>
+        </thead>
+        <tbody>
+            <%if(registro.length>0){
+                registro.forEach(ped=>{%>
+                    <%if (ped.idpedido>0){%>
+                    <tr>
+                        <th><a href="/pedidos/todos/detalles/<%=ped.idpedido%>"><%=ped.idpedido%></a></th> <!-- enlace para ver detalles del pedido -->
+                        <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año -->
+                        <th><%=ped.hora_pedido%></th>
+                        <th><%=ped.tipo%></th>
+                        <th><%=ped.estado%></th>
+                        <th><%=ped.total%></th>
+                        <th><%=new Date(ped.fecha_entrega).toLocaleDateString('es-AR')%></th>
+                        <th><%=ped.hora_entrega%></th>
+
+                        <%if(ped.repartidor_idrepartidor==null || ped.repartidor_idrepartidor==''){%>
+                            <th>-</th> <!-- hace q si no se ingreso un id en el campo para asignar repartidor de pedido, se ponga una linea (si es para llevar o en el local, por eso repartidor puede ser null)-->
+                        <%} else {%>
+                            <th><%=ped.repartidor_idrepartidor%></th>
+                        <%}%>
+
+                        <th><%=ped.clientes_idcliente%></th>
+                    </tr>
+                    <%}%>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</article>
+</body>
+</html>
