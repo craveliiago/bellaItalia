@@ -4,6 +4,7 @@ const bdd=await conectar();
 export const cAlta=(pet, resp)=>{
     resp.render('altaClientes');
 }
+
 export const cNuevo=async(pet, resp)=>{
     let id, nom, ape, dir, tel, cor;
     id=pet.body.idhtml;
@@ -23,17 +24,31 @@ export const cNuevo=async(pet, resp)=>{
 }
 }
 
-
 export const cMenu=(pet, resp)=>{
     resp.render('clientes');
 }
-export const cBaja=(pet, resp)=>{
+export const cBaja= async(pet, resp)=>{
     resp.render('bajaClientes');
+
 }
+
+export const cBorrar=async(pet, resp)=>{
+    let idborrar=pet.params.idborrar;
+
+    try{
+        let borrarSQL="DELETE FROM clientes WHERE idcliente= '"+idborrar+"';"; 
+        const [registros]=await bdd.query(borrarSQL, [idborrar]);
+        console.log(registros);
+        resp.render('bajaClientes');
+    }catch(error){
+        console.log('Error al crear la sentencia delete ${error}');
+        resp.status(500).send("No se pudo borrar el cliente");
+    }
+}
+
 export const cMod=(pet, resp)=>{
     resp.render('modificarClientes');
 }
-
 
 export const cBuscar=async(pet, resp)=>{
     try{
@@ -60,9 +75,6 @@ export const cCons=async(pet, resp)=>{
     } 
     
 }
-
-
-
 
 export const cTodos=async(pet, resp)=>{
 

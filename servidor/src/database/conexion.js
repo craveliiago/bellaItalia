@@ -6,7 +6,7 @@ export async function conectar(){
             host:"localhost",
             database:"bellaitalia",
             user:"root",
-            password:''
+            password:'tomipedroroco'
         })
         console.log('conectado'.green);
         return bdd;
