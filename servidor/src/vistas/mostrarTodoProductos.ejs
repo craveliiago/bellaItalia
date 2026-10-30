@@ -36,11 +36,11 @@
         <h1>mostrar todo producto</h1>
         <table border="1">
             <thead>
-                <th>idproducto</th>
+                <th>id producto</th>
                 <th>nombre</th>
                 <th>descripcion</th>
                 <th>precio</th>
-                <th>categoria_idcategoria</th>
+                <th>categoria</th>
             </thead>
             <tbody>
                 <%if(registros.length>0){
@@ -51,7 +51,7 @@
                             <th><%=pro.nombre%></th>
                             <th><%=pro.descripcion%></th>
                             <th><%=pro.precio%></th>
-                            <th><%=pro.categoria_idcategoria%></th>
+                            <th><%=pro.nombreCat%></th>
                         </tr>
                         <%}%>
                     <%})

@@ -47,7 +47,7 @@ export const peNuevo=async(pet, resp)=>{
 
         resp.render('altaDetallesPedidos', {registros, registros2});
     }catch(error){
-    console.log('Error al crear la sentencia insert ${error}');
+    console.log(`Error al crear la sentencia insert ${error}`);
 }
 }
 
@@ -75,7 +75,7 @@ export const peNuevoDetalles=async(pet, resp)=>{
         // si la persona no quiere mas se tiene que ir al menu de pedidos
 
     }catch(error){
-        console.log('Error al crear la sentencia insert ${error}');
+        console.log(`Error al crear la sentencia insert ${error}`);
     }
 }
 
@@ -127,7 +127,7 @@ export const peBuscar=async(pet, resp)=>{
 export const peCons=async(pet, resp)=>{
     try{
         let idbuscar=pet.params.idbuscar;
-        const consultaSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor_idrepartidor,clientes_idcliente FROM bellaitalia.pedidos WHERE idpedido='"+idbuscar+"';";
+        const consultaSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor.nombre AS nombreRep,clientes.nombre AS nombreCli FROM bellaitalia.pedidos INNER JOIN bellaitalia.clientes ON clientes_idcliente = clientes.idcliente INNER JOIN bellaitalia.repartidor ON repartidor_idrepartidor = repartidor.idrepartidor WHERE idpedido='"+idbuscar+"';";
         const [registro]=await bdd.query(consultaSQL);
         console.log(registro);
         resp.render('consultaPedidos', {registro});
@@ -144,7 +144,7 @@ export const peCons=async(pet, resp)=>{
 export const peTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoPedidos');
     try{
-        let mostrarSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor_idrepartidor,clientes_idcliente FROM bellaitalia.pedidos Order by idpedido;";
+        let mostrarSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor.nombre AS nombreRep,clientes.nombre AS nombreCli FROM bellaitalia.pedidos INNER JOIN bellaitalia.clientes ON clientes_idcliente = clientes.idcliente INNER JOIN bellaitalia.repartidor ON repartidor_idrepartidor = repartidor.idrepartidor Order by idpedido;";
         const [registros]=await bdd.query(mostrarSQL);
         console.log(registros);
         resp.render('mostrarTodoPedidos', {registros});
@@ -158,7 +158,7 @@ export const peTodos=async(pet, resp)=>{
 export const peDetallesId=async(pet, resp)=>{ //se accede a esta func. dsp de hacer click en el id del pedido en tabla pedidos
     let idpedido=pet.params.idpedido;
     try{
-        let mostrarDetallesIdSQL="SELECT iddetalle,cantidad,subtotal,producto_idproducto,pedidos_idpedido FROM bellaitalia.detallespedido WHERE pedidos_idpedido='"+idpedido+"' Order by iddetalle;";
+        let mostrarDetallesIdSQL="SELECT iddetalle,cantidad,subtotal,productos.nombre,pedidos_idpedido FROM bellaitalia.detallespedido INNER JOIN bellaitalia.productos ON producto_idproducto=productos.idproducto WHERE pedidos_idpedido='"+idpedido+"' Order by iddetalle;";
         const [registrosDetallesId]=await bdd.query(mostrarDetallesIdSQL);
         console.log(registrosDetallesId);
         resp.render('mostrarDetallesPedido', {registrosDetallesId});

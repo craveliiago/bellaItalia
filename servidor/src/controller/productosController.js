@@ -111,7 +111,7 @@ export const pBuscar=async(pet, resp)=>{
 export const pCons=async(pet, resp)=>{
     try{
         let idbuscar=pet.params.idbuscar;
-        const consultaSQL="SELECT idproducto,nombre,descripcion,precio,categoria_idcategoria FROM bellaitalia.productos WHERE idproducto='"+idbuscar+"';";
+        const consultaSQL="SELECT idproducto,productos.nombre,descripcion,precio,categorias.nombre AS nombreCat FROM bellaitalia.productos INNER JOIN bellaitalia.categorias ON categoria_idcategoria = categorias.idcategoria WHERE idproducto='"+idbuscar+"';";
         const [registro]=await bdd.query(consultaSQL);
         console.log(registro);
         resp.render('consultaProductos', {registro});
@@ -126,7 +126,7 @@ export const pCons=async(pet, resp)=>{
 export const pTodos=async(pet, resp)=>{
     //resp.render('mostrarTodoProductos');
     try{
-        let mostrarSQL="SELECT idproducto,nombre,descripcion,precio,categoria_idcategoria FROM bellaitalia.productos Order by idproducto;";
+        let mostrarSQL="SELECT idproducto,productos.nombre,descripcion,precio,categorias.nombre AS nombreCat FROM bellaitalia.productos INNER JOIN bellaitalia.categorias ON categoria_idcategoria = categorias.idcategoria Order by idproducto;";
         const [registros]=await bdd.query(mostrarSQL);
         console.log(registros);
         resp.render('mostrarTodoProductos', {registros});

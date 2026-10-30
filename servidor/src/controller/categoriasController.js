@@ -96,7 +96,7 @@ export const catTodos=async(pet, resp)=>{
 export const catProductos=async(pet, resp)=>{
     let idcategoria=pet.params.idcategoria;
     try{
-        let mostrarCategoriasProductoSQL="SELECT idproducto,nombre,descripcion,precio,categoria_idcategoria FROM bellaitalia.productos WHERE categoria_idcategoria='"+idcategoria+"' Order by idproducto;";
+        let mostrarCategoriasProductoSQL="SELECT idproducto,productos.nombre,descripcion,precio,categorias.nombre AS nombreCat FROM bellaitalia.productos INNER JOIN bellaitalia.categorias ON categoria_idcategoria = categorias.idcategoria WHERE categoria_idcategoria='"+idcategoria+"' Order by idproducto;";
         const [registrosProductosId]=await bdd.query(mostrarCategoriasProductoSQL);
         console.log(registrosProductosId);
         resp.render('mostrarCategoriasProductos', {registrosProductosId});
