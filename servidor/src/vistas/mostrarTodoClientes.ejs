@@ -48,7 +48,7 @@
                 registros.forEach(cli=>{%>
                     <%if (cli.idcliente>0){%> <!-- hace que solo se vean id mayores a 0 -->
                     <tr>
-                        <th><%=cli.idcliente%></th>
+                        <th><a href="todos/pedidos/<%=cli.idcliente%>" id="numero"><%=cli.idcliente%></a></th>
                         <th><%=cli.nombre%></th>
                         <th><%=cli.apellidos%></th>
                         <th><%=cli.direccion%></th>

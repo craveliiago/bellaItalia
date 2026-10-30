@@ -28,7 +28,7 @@
                 registro.forEach(rep=>{%>
                     <%if (rep.idrepartidor>0){%>
                     <tr>
-                        <th><%=rep.idrepartidor%></th>
+                        <th><a href="/repartidor/todos/pedidos/<%=rep.idrepartidor%>" id="numero"><%=rep.idrepartidor%></a></th>
                         <th><%=rep.nombre%></th>
                         <th><%=rep.apellidos%></th>
                         <th><%=rep.telefono%></th>

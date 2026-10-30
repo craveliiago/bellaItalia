@@ -1,0 +1,66 @@
+<!-- hace q los pedidos que esten como "en camino" de algun repartidor aparezcan si se selecciona el id de un repartidor -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar repartidor con pedidos en camino</title>
+    <link rel="stylesheet" href="../../../CSS/mostrar.css">
+</head>
+<body>
+    <header class="header">
+       <a href="/"><img src="../../../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
+
+    <article>
+    <h1>mostrar repartidor enviado</h1>
+    <table border="1">
+        <thead>
+            <th>id pedido</th>
+            <th>fecha pedido</th>
+            <th>hora pedido</th>
+            <th>tipo</th>
+            <th>estado</th>
+            <th>total</th>
+            <th>fecha entrega</th>
+            <th>hora entrega</th>
+            <th>repartidor</th>
+            <th>clientes</th>
+        </thead>
+        <tbody>
+            <%if(registroPedidosEnviados.length>0){
+                registroPedidosEnviados.forEach(ped=>{%>
+                    <%if (ped.idpedido>0){%>
+                    <tr>
+                        <th><a href="/pedidos/todos/detalles/<%=ped.idpedido%>" id="numero"><%=ped.idpedido%></a></th> <!-- enlace para ver detalles del pedido -->
+                        <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año -->
+                        <th><%=ped.hora_pedido%></th>
+                        <th><%=ped.tipo%></th>
+                        <th><%=ped.estado%></th>
+                        <th><%=ped.total%></th>
+                        <th><%=new Date(ped.fecha_entrega).toLocaleDateString('es-AR')%></th>
+                        <th><%=ped.hora_entrega%></th>
+
+                        <%if(ped.nombreRep==null || ped.nombreRep==''){%>
+                            <th>-</th> <!-- hace q si no se ingreso un id en el campo para asignar repartidor de pedido, se ponga una linea (si es para llevar o en el local, por eso repartidor puede ser null)-->
+                        <%} else {%>
+                            <th><%=ped.nombreRep%></th>
+                        <%}%>
+
+                        <th><%=ped.nombreCli%></th>
+                    </tr>
+                    <%}%>
+                <%})
+            } else{%>
+                <tr>
+                    <p>No hay registros</p>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+
+    
+    </article>
+</body>
+</html>

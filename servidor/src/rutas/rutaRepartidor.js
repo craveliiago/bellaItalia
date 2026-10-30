@@ -1,4 +1,4 @@
-import {rMenu, rAlta, rNuevo, rBaja, rBorrar, /*rMod,*/ rCons, rTodos, rBuscar}from '../controller/repartidorController.js';
+import {rMenu, rAlta, rNuevo, rBaja, rBorrar, /*rMod,*/ rCons, rTodos, rBuscar, rEnviados}from '../controller/repartidorController.js';
 import express from 'express';
 
 const rRep=express.Router()
@@ -11,4 +11,5 @@ rRep.get('/repartidor/baja/:idborrar', rBorrar)
 rRep.get('/repartidor/consulta', rBuscar)
 rRep.get('/repartidor/todos', rTodos)
 rRep.get('/repartidor/consulta/:idbuscar', rCons)
+rRep.get('/repartidor/todos/pedidos/:idrepartidor', rEnviados)
 export {rRep}

@@ -97,3 +97,18 @@ export const rTodos=async(pet, resp)=>{
         resp.status(500).send("No se pudieron mostrar los datos");
     }
 }
+
+
+export const rEnviados=async(pet, resp)=>{
+    let idrepartidor=pet.params.idrepartidor;
+    try{
+        let mostrarRepartidorEnviadosSQL="SELECT idpedido,fecha_pedido,hora_pedido,tipo,estado,total,fecha_entrega,hora_entrega,repartidor.nombre AS nombreRep,clientes.nombre AS nombreCli FROM bellaitalia.pedidos INNER JOIN bellaitalia.clientes ON clientes_idcliente = clientes.idcliente INNER JOIN bellaitalia.repartidor ON repartidor_idrepartidor = repartidor.idrepartidor WHERE repartidor_idrepartidor='"+idrepartidor+"' AND estado='"+"En camino"+"';";
+        const [registroPedidosEnviados]=await bdd.query(mostrarRepartidorEnviadosSQL);
+        console.log(registroPedidosEnviados);
+        resp.render('mostrarRepartidorEnviado', {registroPedidosEnviados});
+    }catch(error){
+        console.log('no se pueden mostrar los datos');
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
+    } 
+}
