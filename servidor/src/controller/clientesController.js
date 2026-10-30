@@ -44,6 +44,7 @@ export const cBorrar=async(pet, resp)=>{
         const [registros]=await bdd.query(borrarSQL, [idborrar]);
         console.log(registros);
         resp.redirect('../baja'); //aca es redirect pq asi se ven estilos sin hacer otro ejs
+        console.log('Error al crear la sentencia delete ${error}');
     }catch(error){
         console.log('Error al crear la sentencia delete ${error}');
         resp.status(500).send("No se pudo borrar el cliente");
