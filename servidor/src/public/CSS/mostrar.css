@@ -55,3 +55,11 @@ input::placeholder {
     color: #ffffff;
     font-size: 18px;
 }
+#numero{
+    cursor: pointer;
+    padding-left: 1%;
+    padding-right: 1%;
+    color: white;
+    background-color: orangered;
+    text-decoration: none;
+}

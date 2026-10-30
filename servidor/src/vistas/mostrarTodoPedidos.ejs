@@ -53,7 +53,7 @@
                 registros.forEach(ped=>{%>
                     <%if (ped.idpedido>0){%>
                     <tr>
-                        <th><a href="todos/detalles/<%=ped.idpedido%>"><%=ped.idpedido%></a></th> <!-- enlace para ver detalles del pedido -->
+                        <th><a href="todos/detalles/<%=ped.idpedido%>" id="numero"><%=ped.idpedido%></a></th> <!-- enlace para ver detalles del pedido -->
                         <th><%=new Date(ped.fecha_pedido).toLocaleDateString('es-AR')%></th> <!-- es para mostrar fecha tipo dia/mes/año -->
                         <th><%=ped.hora_pedido%></th>
                         <th><%=ped.tipo%></th>
