@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar de baja repartidores</title>
+    <link rel="stylesheet" href="../CSS/altas.css">
+</head>
+<body>
+    <header class="header">
+       <a href="/"><img src="../IMG/bellaitalia-logo3.png" alt="logo" id="logo"></a>
+    </header>
+    
+    <h1>Borrar repartidor</h1>
+        <form onsubmit="borrarid(event)">
+        <input type="number" name="idborrar"  placeholder="ID repartidor" id="idborrar">
+        <input type="submit" value="Dar de baja" id="enviar">
+
+    </form>
+
+<script>
+    function borrarid(event) {
+        event.preventDefault();
+        let idborrar = document.getElementById('idborrar').value;
+        window.location.href = `/repartidor/baja/${idborrar}`;
+        document.getElementById('idborrar').value = "";
+        
+    }
+
+    
+</script>
+
+</body>
+</html>

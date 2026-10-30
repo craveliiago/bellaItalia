@@ -23,9 +23,32 @@ export const rNuevo=async(pet, resp)=>{
 export const rMenu=(pet, resp)=>{
     resp.render('repartidor');
 }
-export const rBaja=(pet, resp)=>{
-    resp.render('bajaRepartidor');
+
+
+export const rBaja= async(pet, resp)=>{
+    try{
+        resp.render('bajaRepartidor');
+    }catch(error){
+        console.log(error);
+        resp.status(500).send("No se pudo borrar el repartidor");
+    }
 }
+
+export const rBorrar=async(pet, resp)=>{
+    let idborrar=pet.params.idborrar;
+
+    try{
+        let borrarSQL="DELETE FROM repartidor WHERE idrepartidor= '"+idborrar+"';"; 
+        const [registros]=await bdd.query(borrarSQL, [idborrar]);
+        console.log(registros);
+        resp.redirect('../baja'); //aca es redirect pq asi se ven estilos sin hacer otro ejs
+    }catch(error){
+        console.log('Error al crear la sentencia delete ${error}');
+        resp.status(500).send("No se pudo borrar el repartidor");
+    }
+}
+
+
 export const rMod=(pet, resp)=>{
     resp.render('modificarRepartidor');
 }

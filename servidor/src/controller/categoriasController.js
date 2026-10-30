@@ -20,9 +20,31 @@ export const catNuevo=async(pet, resp)=>{
 export const catMenu=(pet, resp)=>{
     resp.render('categorias');
 }
-export const catvBaja=(pet, resp)=>{
-    resp.render('bajaCategorias');
+
+export const catBaja= async(pet, resp)=>{
+    try{
+        resp.render('bajaCategorias');
+    }catch(error){
+        console.log(error);
+        resp.status(500).send("No se pudo borrar la categoria");
+    }
 }
+
+export const catBorrar=async(pet, resp)=>{
+    let idborrar=pet.params.idborrar;
+
+    try{
+        let borrarSQL="DELETE FROM categorias WHERE idcategoria= '"+idborrar+"';"; 
+        const [registros]=await bdd.query(borrarSQL, [idborrar]);
+        console.log(registros);
+        resp.redirect('../baja'); //aca es redirect pq asi se ven estilos sin hacer otro ejs
+    }catch(error){
+        console.log('Error al crear la sentencia delete ${error}');
+        resp.status(500).send("No se pudo borrar la categoria");
+    }
+}
+
+
 export const catMod=(pet, resp)=>{
     resp.render('modificarCategorias');
 }

@@ -83,9 +83,31 @@ export const peNuevoDetalles=async(pet, resp)=>{
 export const peMenu=(pet, resp)=>{
     resp.render('pedidos');
 }
-export const peBaja=(pet, resp)=>{
-    resp.render('bajaPedidos');
+
+export const peBaja= async(pet, resp)=>{
+    try{
+        resp.render('bajaPedidos');
+    }catch(error){
+        console.log(error);
+        resp.status(500).send("No se pudo borrar el pedido");
+    }
 }
+
+export const peBorrar=async(pet, resp)=>{
+    let idborrar=pet.params.idborrar;
+
+    try{
+        let borrarSQL="DELETE FROM pedidos WHERE idpedido= '"+idborrar+"';"; 
+        const [registros]=await bdd.query(borrarSQL, [idborrar]);
+        console.log(registros);
+        resp.redirect('../baja'); //aca es redirect pq asi se ven estilos sin hacer otro ejs
+    }catch(error){
+        console.log('Error al crear la sentencia delete ${error}');
+        resp.status(500).send("No se pudo borrar el pedido");
+    }
+}
+
+
 export const peMod=(pet, resp)=>{
     resp.render('modificarPedidos');
 }
