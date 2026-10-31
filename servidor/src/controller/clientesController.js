@@ -43,7 +43,7 @@ export const cBorrar=async(pet, resp)=>{
         let borrarSQL="DELETE FROM clientes WHERE idcliente= '"+idborrar+"';"; 
         const [registros]=await bdd.query(borrarSQL, [idborrar]);
         console.log(registros);
-        resp.redirect('../baja'); //aca es redirect pq asi se ven estilos sin hacer otro ejs
+        resp.redirect('../baja'); //aca es redirect porque asi se ven estilos sin hacer otro ejs
         console.log('Error al crear la sentencia delete ${error}');
     }catch(error){
         console.log('Error al crear la sentencia delete ${error}');
@@ -51,8 +51,36 @@ export const cBorrar=async(pet, resp)=>{
     }
 }
 
-export const cMod=(pet, resp)=>{
+export const cModNuevo= async(pet, resp)=>{
+    
+       let id, nom, ape, dir, tel, cor;
+    id=pet.body.idhtml;
+    nom=pet.body.nomhtml;
+    ape=pet.body.apehtml;
+    dir=pet.body.dirhtml;
+    tel=pet.body.telhtml;
+    cor=pet.body.corhtml;
+
+     let modificarSQL="UPDATE clientes SET nombre='"+nom+"', apellidos='"+ape+"', direccion='"+dir+"', telefono='"+tel+"', correo='"+cor+"' WHERE idcliente='"+id+"';";
+
+    try{
+       if(id.length == 0){
+        const [id]=await bdd.query("SELECT * FROM clientes WHERE idcliente=?", [id]);
+        
+        }
+        const [registros]=await bdd.query(modificarSQL);
+        console.log(registros);
+        resp.render('modificarClientes');
+}catch(error){
+    console.log('Error al crear la sentencia update ${error}');
+    resp.status(500).send("No se pudo modificar al cliente");
+
+}
+}
+
+export const cMod= async(pet, resp)=>{
     resp.render('modificarClientes');
+   
 }
 
 export const cBuscar=async(pet, resp)=>{
